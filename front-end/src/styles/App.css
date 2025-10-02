@@ -1,0 +1,34 @@
+#root {
+  width: 100%; 
+  max-width: 768px; /* A good max width for a centralized form */
+  margin: 0; /* Remove top/bottom margin for mobile full-screen experience */
+  padding: 1rem; /* Smaller padding on mobile */
+  text-align: center;
+  box-sizing: border-box; /* Crucial for responsive padding */
+}
+
+.card {
+  padding: 1.5rem; /* Smaller padding for mobile */
+  background-color: #2b2437; /* Darker violet/charcoal for card background */
+  border-radius: 0.75rem; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
+  text-align: left; 
+  margin-bottom: 1.5rem; /* Space below the card */
+}
+
+.read-the-docs {
+  color: #9d9d9d; 
+  margin-top: 1rem;
+  display: block; 
+}
+
+/* Media query for larger screens (tablets and desktops) */
+@media (min-width: 768px) {
+  #root {
+    padding: 2.5rem;
+    margin: 2.5rem auto; /* Re-introduce vertical margin on desktop */
+  }
+  .card {
+    padding: 2.5rem; /* Larger padding on desktop */
+  }
+}

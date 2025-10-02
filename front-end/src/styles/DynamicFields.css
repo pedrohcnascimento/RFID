@@ -1,0 +1,59 @@
+.container {
+  margin-bottom: 1.5rem;
+}
+
+.dynamic-field {
+  display: flex;
+  flex-direction: column; /* Stack label/input/button vertically on mobile */
+  gap: 0.5rem; 
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #3d344d; 
+  border-radius: 0.5rem;
+  background-color: #241e2f; 
+  color: #f0f0f0;
+}
+
+.dynamic-field:hover {
+  border-color: #d15099; /* Pink accent on hover */
+}
+
+.dynamic-field label {
+  font-weight: 600;
+  width: 100%; /* Label takes full width */
+}
+
+.dynamic-field input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid #3d344d;
+  border-radius: 0.5rem;
+  background-color: #352c42; 
+  color: #fff;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.dynamic-field input:focus {
+  border-color: #ff69b4; 
+  outline: none;
+}
+
+/* Media query to return to horizontal layout on wider screens */
+@media (min-width: 600px) {
+  .dynamic-field {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  .dynamic-field label {
+    flex-shrink: 0;
+    width: auto;
+  }
+  .dynamic-field input {
+    flex-grow: 1;
+    width: auto;
+  }
+}

@@ -1,0 +1,47 @@
+.container {
+  margin-top: 2rem;
+  padding: 1.5rem; 
+  border: 2px dashed #d15099; /* Pink accent for the dashed border */
+  border-radius: 0.5rem;
+  background-color: #2b2437;
+  color: #f0f0f0;
+  text-align: center; 
+}
+
+.warning-message {
+  font-weight: 700;
+  color: #ff4d94; /* Brighter pink-red warning */
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: #4d152a; /* Dark background for warning */
+  border-radius: 0.25rem;
+  font-size: 0.9rem; /* Slightly smaller warning text */
+}
+
+.field-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 1rem;
+  text-align: left; 
+}
+
+.field-list li {
+  margin: 0.4rem 0;
+  font-size: 0.9rem;
+  color: #c0c0c0; 
+}
+
+input[type="file"] {
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  border: 1px solid #3d344d;
+  border-radius: 0.5rem;
+  background-color: #352c42;
+  color: #fff;
+  display: block; 
+  width: 100%; /* Full width for mobile */
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}

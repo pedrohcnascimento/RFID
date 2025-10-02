@@ -1,0 +1,62 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: #f0f0f0; /* Very light text */
+  background-color: #1a1523; /* Deep Violet/Charcoal Base */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex; 
+  justify-content: center;
+  align-items: flex-start; 
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: #1a1523; 
+}
+
+/* Default button styles updated for new palette */
+button {
+  border-radius: 0.5rem;
+  border: 1px solid #3d344d; /* Darker border */
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #2b2437; 
+  color: #f0f0f0;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+button:hover {
+  border-color: #ff69b4; /* Dark Pink Accent */
+  background-color: #3d344d;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto #ff69b4;
+}
+
+/* General link styling */
+a {
+  font-weight: 500;
+  color: #d15099; /* Pink accent */
+  text-decoration: none;
+}
+a:hover {
+  color: #ff69b4;
+}
+
+h1 {
+  font-size: 2rem; /* Slightly smaller for mobile context */
+  line-height: 1.1;
+  color: #f0f0f0;
+}

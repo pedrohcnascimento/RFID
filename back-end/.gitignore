@@ -1,0 +1,47 @@
+# Virtual environment
+venv/
+venv_*/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+*.egg
+dist/
+build/
+*.log
+
+# pytest / coverage
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Local env / secrets
+.env
+.env.* 
+secrets.json
+
+# Databases
+*.sqlite3
+*.db
+
+# VSCode
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node / frontend (if inside repo)
+frontend/node_modules/
+
+# Packaging
+pip-wheel-metadata/
+*.whl
+
+# Misc
+coverage.xml
+.cache/

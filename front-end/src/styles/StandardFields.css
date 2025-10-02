@@ -1,0 +1,32 @@
+.container {
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: 600;
+  color: #f0f0f0; 
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.6rem 1rem; /* Reduced padding for mobile */
+  border: 1px solid #3d344d; 
+  border-radius: 0.5rem; 
+  background-color: #352c42; /* Slightly lighter input background */
+  color: #fff; 
+  font-size: 1rem; 
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus {
+  border-color: #ff69b4; /* Dark Pink border on focus */
+  box-shadow: 0 0 8px rgba(255, 105, 180, 0.4);
+  outline: none; 
+}
+
+input[type="text"]::placeholder {
+  color: #a0a0a0;
+}
