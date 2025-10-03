@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getMessage } from "./services/api";
 import ProductForm from "./components/ProductForm"
+import TableOutput from "./components/TableOutput";
 import "./styles/App.css"
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
   return (
     <div>
       <ProductForm />
+      <hr />
+      <TableOutput />
     </div>
   );
 }

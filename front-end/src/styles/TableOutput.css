@@ -1,0 +1,69 @@
+/* src/styles/TableOutput.css */
+
+.table-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.data-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.data-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.data-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding: 8px 12px;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: opacity 0.3s;
+}
+
+.edit-btn {
+  background-color: #4CAF50; /* Verde */
+}
+
+.delete-btn {
+  background-color: #f44336; /* Vermelho */
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  opacity: 0.8;
+}
