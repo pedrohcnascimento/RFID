@@ -1,18 +1,22 @@
-# backend/app/main.py
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import binascii
+import asyncio
 
-# ------------------------------------------------------------------
-# serial is optional while you’re still wiring things together
-# ------------------------------------------------------------------
 try:
-    import serial              # sudo pip install pyserial
+    import serial
 except ModuleNotFoundError:
-    serial = None              # will be checked later
+    serial = None  # type: ignore
 
 # ------------------------------------------------------------------
+# CONFIGURATION — adjust these if the reader settings change
+# ------------------------------------------------------------------
+PORT = "COM4"      # Windows example; use \"/dev/ttyUSB0\" on Linux
+BAUD = 9600
+TIMEOUT = 1  # seconds
+# ------------------------------------------------------------------
+
 app = FastAPI(title="RFID API")
 
 app.add_middleware(
@@ -23,6 +27,8 @@ app.add_middleware(
 )
 
 # ------------------------------------------------------------------
+# Pydantic models
+# ------------------------------------------------------------------
 class ReadTagRequest(BaseModel):
     epc: str
     bank: int
@@ -30,37 +36,43 @@ class ReadTagRequest(BaseModel):
     words: int
     password: str | None = None
 
+
 class ReadTagResponse(BaseModel):
     data: str
 
+
 # ------------------------------------------------------------------
-def open_reader() -> "serial.Serial":  # type: ignore # quoted type hint avoids NameError
+# Helper functions
+# ------------------------------------------------------------------
+def open_reader() -> "serial.Serial":  # type: ignore
+    
     if serial is None:
         raise HTTPException(
             status_code=500,
             detail="pyserial is not installed – run `pip install pyserial`.",
         )
-
     try:
-        return serial.Serial("/dev/ttyUSB0", baudrate=115200, timeout=1)
+        return serial.Serial(PORT, BAUD, timeout=TIMEOUT)
     except serial.SerialException as err:
-        raise HTTPException(status_code=500, detail=f"Serial error: {err}")
+        raise HTTPException(status_code=500, detail=f"Serial error: {err}") from err
+
 
 def build_command(req: ReadTagRequest) -> bytes:
-    pwd_hex = req.password or "00000000"
-    cmd = f"READ {req.epc} {req.bank} {req.address} {req.words} {pwd_hex}\n"
+    pwd_hex = (req.password or "00000000").upper()
+    cmd = f"READ {req.epc} {req.bank} {req.address} {req.words} {pwd_hex}\\n"
     return cmd.encode()
 
+
+# ------------------------------------------------------------------
+# Routes
 # ------------------------------------------------------------------
 @app.get("/", tags=["health"])
 def root():
     return {"message": "Backend is alive 🚀"}
 
+
 @app.post("/rfid/read", response_model=ReadTagResponse, tags=["rfid"])
 def read_tag(req: ReadTagRequest):
-    # If you don’t have the reader yet, short-circuit here:
-    # return {"data": "DEADBEEF"}      # <-- uncomment for stub testing
-
     ser = open_reader()
     try:
         ser.write(build_command(req))
@@ -77,3 +89,21 @@ def read_tag(req: ReadTagRequest):
         text = binascii.hexlify(raw).decode()
 
     return {"data": text}
+
+
+async def read_tag_from_serial() -> str:
+   
+    loop = asyncio.get_running_loop()
+
+    def _read() -> bytes:
+        with serial.Serial(PORT, BAUD, timeout=TIMEOUT) as s:  # type: ignore
+            return s.readline()
+
+    raw_bytes = await loop.run_in_executor(None, _read)
+    return raw_bytes.decode(errors="ignore").strip()
+
+
+@app.get("/tag")
+async def get_tag():
+    tag = await read_tag_from_serial()
+    return {"tag": tag or None}

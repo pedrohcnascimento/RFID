@@ -1,0 +1,19 @@
+# ---- Core web framework ----
+fastapi==0.110.0          # API layer
+uvicorn[standard]==0.29.0 # ASGI server with reload, SSL, etc.
+
+# ---- Async & WebSocket helpers (pulled by Starlette but kept explicit) ----
+websockets==12.0
+
+# ---- Data validation / settings ----
+pydantic==2.7.1
+python-dotenv==1.0.1      # Load .env files for local secrets
+
+# ---- Hardware I/O ----
+pyserial==3.5             # Serial interface for CF-MU616S-US reader
+
+# ---- Logging ----
+loguru==0.7.2             # Human-friendly, structured logs
+
+# ---- Developer convenience (optional) ----
+watchfiles==0.21.0        # Hot-reload when Python files change
